@@ -1,8 +1,8 @@
 <div id="footer">
   <p> 2023 Ongaonga Bed & Breakfast. All rights reserved.</p>
   <a href="./Privacy Statement.html">Privacy Policy</a> |
-    <a href="./aboutus.html">About Us</a> |
-    <a href="./map.html">Site Map</a>
+    <a href="./aboutus.php">About Us</a> |
+    <a href="contactus.php">Contact Us</a>
 
   <!-- Social Media Links -->
   <div class="social-media">

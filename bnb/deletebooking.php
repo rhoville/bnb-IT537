@@ -18,14 +18,14 @@ function cleanInput($data) {
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $bookingID = $_GET['bookingID'];
   if (empty($bookingID) or !is_numeric($bookingID)) {
-    echo "<h2>Invalid Booking ID</h2>"; // Simple error feedback
+    echo "<h2>Invalid Booking ID</h2>"; 
     exit;
   }
 }
 
 // Check if we are deleting data
 if (isset($_POST['submit']) && !empty($_POST['submit']) && ($_POST['submit'] == 'Delete')) {
-  $error = 0; // Clear our error flag
+  $error = 0; 
   $msg = 'Error: ';
   
   // Check if the form has been submitted

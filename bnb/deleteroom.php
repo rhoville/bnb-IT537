@@ -109,7 +109,7 @@ fieldset {
       <h2>Delete Room</h2>
       <a href="roomlist.php">[Return to Room Listing]</a> | <a href="./maintenance.php">[Return to Maintenance Page]</a>
       <?php
-include "config.php"; //load in any variables
+include "config.php"; 
 $DBC = mysqli_connect("127.0.0.1", DBUSER, DBPASSWORD, DBDATABASE);
 
 //insert DB code from here onwards

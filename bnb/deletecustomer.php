@@ -155,7 +155,7 @@ if ($rowcount > 0) {
      <a href="listcustomers.php">[Cancel]</a>
      </form>
 <?php    
-} else echo "<h2>Customer Successfully Deleted!</h2>"; //suitable feedback
+} else echo "<h2>Customer Successfully Deleted!</h2>";
 
 mysqli_free_result($result); //free any memory used by the query
 mysqli_close($DBC); //close the connection once done

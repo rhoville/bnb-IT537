@@ -289,7 +289,7 @@ hr {margin-top: 30px;}
     <div id="content">
         <div class= "top">
         <h2>Booking</h2>
-        <a href="Current-Booking.html">[Return to the Bookings List]</a> | <a href="/">[Return to the main page]</a>
+        <a href="currentbooking.php">[Return to the Bookings List]</a> | <a href="/">[Return to the main page]</a>
 </div>
     </div>
     <div class = "booking-container">

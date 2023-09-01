@@ -164,7 +164,7 @@ include "config.php"
       }
 
       // Define the SQL query to retrieve data
-      $sql = "SELECT customerID,lastname, firstname FROM customer"; // Modify this SQL query according to your database and table structure
+      $sql = "SELECT customerID,lastname, firstname FROM customer"; 
 
       // Prepare the SQL statement
       $stmt = mysqli_prepare($conn, $sql);
@@ -186,9 +186,9 @@ include "config.php"
         echo "<td>" . htmlspecialchars($lastname) . "</td>";
         echo "<td>" . htmlspecialchars($firstname) . "</td>";
         echo "<td>";
-        echo "<a href='viewcustomer.php?id=" . $customerID . "'>View</a> | ";  // Assuming you want to use lastname as id
-        echo "<a href='editcustomer.php?id=" . $customerID . "'>Edit</a> | ";  // Assuming you want to use lastname as id
-        echo "<a href='deletecustomer.php?id=" . $customerID . "'>Delete</a>";  // Assuming you want to use lastname as id
+        echo "<a href='viewcustomer.php?id=" . $customerID . "'>View</a> | ";  
+        echo "<a href='editcustomer.php?id=" . $customerID . "'>Edit</a> | "; 
+        echo "<a href='deletecustomer.php?id=" . $customerID . "'>Delete</a>";  
         echo "</td>";
         echo "</tr>";
     }

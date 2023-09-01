@@ -9,11 +9,12 @@
         <p>Here's a list of things do to in Ongaonga.<br /><a href="#">Read more</a></p>
         <h3>Useful Links</h3>
         <ul>
-          <li><a href="#">Privacy Statement</a></li>
-          <li><a href="#">link 2</a></li>
-          <li><a href="#">link 3</a></li>
-          <li><a href="#">link 4</a></li>
-        </ul>
+  <li><a href="https://www.hawkesbaynz.com/see-and-do/great-outdoors/heritage-trails/ongaonga-walking-tour/">Ongaonga Walking Tour</a></li>
+  <li><a href="https://www.hawkesbaynz.com/plan-your-stay/our-neighbourhoods/central-hawkes-bay/ongaonga-historic-village/#:~:text=Carefully%20managed%20by%20the%20Ongaonga,at%20the%20Onga%20Onga%20General">Ongaonga Historic Village</a></li>
+  <li><a href="https://nzjane.com/ongaonga-things-to-do/">Things To Do in Ongaonga</a></li>
+  <li><a href="https://www.alltrails.com/new-zealand/hawke-s-bay/ongaonga">Bikes and Trails in Ongaonga</a></li>
+</ul>
+
         <h3>Search</h3>
         <form method="post" action="#" id="search_form">
           <p>

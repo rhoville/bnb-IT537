@@ -57,6 +57,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+// Fetch the customer's first name
+$customerQuery = 'SELECT c.firstname FROM booking b
+                  JOIN customer c ON b.customerID = c.customerID
+                  WHERE b.bookingID = ?';
+$customerStmt = mysqli_prepare($DBC, $customerQuery);
+
+if ($customerStmt === false) {
+    die('Customer query mysqli_prepare failed: ' . mysqli_error($DBC));
+}
+
+if (!mysqli_stmt_bind_param($customerStmt, 'i', $id)) {
+    die('Customer query mysqli_stmt_bind_param failed: ' . mysqli_stmt_error($customerStmt));
+}
+
+if (!mysqli_stmt_execute($customerStmt)) {
+    die('Customer query mysqli_stmt_execute failed: ' . mysqli_stmt_error($customerStmt));
+}
+
+$customerResult = mysqli_stmt_get_result($customerStmt);
+
+if ($customerResult) {
+    $customerRow = mysqli_fetch_assoc($customerResult);
+    $customerFirstName = $customerRow['firstname'];
+} else {
+    $customerFirstName = 'Unknown';
+}
 
 // Fetch the room review
 $reviewQuery = 'SELECT review FROM booking WHERE bookingID=?';  // No change here as it was correct
@@ -192,9 +218,10 @@ p[style*='color: green;'] {
     <a href="currentbooking.php">[Return to Booking Listing]</a> | <a href="./maintenance.php">[Return to Maintenance Page]</a>
     
     <form method="post">
-        <div class="section">
-            <strong>Review made by:</strong> Rhoville
-        </div>
+    <div class="section">
+    <strong>Review made by:</strong> <?php echo htmlspecialchars($customerFirstName); ?>
+</div>
+
         <?php
     if ($message) {
         echo "<p style='color: green;'>$message</p>";

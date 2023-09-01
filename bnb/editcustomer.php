@@ -50,7 +50,7 @@ session_start();
   text-align:  right;
     }
     
-    /* Container holding the form */
+    
     .editbox {
       width: 100%;
       max-width: 500px;
@@ -108,7 +108,7 @@ session_start();
   <a href="customerlist.php">[Return to Customer Listing]</a> | <a href="./maintenance.php">[Return to Maintenance Page]</a>
 
   <?php
-  include "config.php"; // Load in variables
+  include "config.php"; 
   $DBC = mysqli_connect("127.0.0.1", DBUSER, DBPASSWORD, DBDATABASE);
 
   if (mysqli_connect_errno()) {
@@ -120,8 +120,7 @@ session_start();
     return htmlspecialchars(stripslashes(trim($data)));
   }
 
-  // Retrieve customer ID from URL
- // Retrieve customer ID from URL or POST data
+
 $id = $_GET['id'] ?? ($_POST['id'] ?? '');
   if (empty($id) or !is_numeric($id)) {
     echo "<h2>Invalid Customer ID</h2>";
@@ -138,7 +137,7 @@ $id = $_GET['id'] ?? ($_POST['id'] ?? '');
     $email = cleanInput($_POST['email']);
     $country = cleanInput($_POST['country']);
     $phonenumber = cleanInput($_POST['phonenumber']);
-    $password = cleanInput($_POST['password']); // Do not store plaintext password in the database
+    $password = cleanInput($_POST['password']);
 
     if ($error === 0 && $id > 0) {
       $query = "UPDATE customer SET firstname=?, lastname=?, email=?, country=?, phonenumber=?, password=? WHERE customerID=?";

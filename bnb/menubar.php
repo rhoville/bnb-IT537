@@ -1,8 +1,9 @@
 <div id="menubar">
     <ul id="menu">
       <li class="selected"><a href="index.php">Home</a></li>
+      <li><a href="rooms.php">Rooms</a></li>
       <li><a href="booking.php">Booking</a></li>
-      <li><a href="contactus.php">Contact Us</a></li>
+      <li><a href="signup.php">Register</a></li>
 
       <?php 
    // This part will only show if the user is logged in as an admin

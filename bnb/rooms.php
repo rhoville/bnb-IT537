@@ -1,25 +1,7 @@
 <?php
 session_start();
-include "config.php"; // Load in any variables
-
-// Initialize database connection
-$DBC = mysqli_connect("127.0.0.1", DBUSER, DBPASSWORD, DBDATABASE);
-
-// Check if the connection was good
-if (mysqli_connect_errno()) {
-    echo "Error: Unable to connect to MySQL. " . mysqli_connect_error();
-    exit;
-}
-
-// Query to fetch room data
-$query = 'SELECT * FROM room';
-$result = mysqli_query($DBC, $query);
-
-if (!$result) {
-    die("Error executing query: " . mysqli_error($DBC));
-}
-
-
+include "config.php";
+$conn = connect();  // Add this line to call the function and initialize $conn
 ?>
 
 
@@ -27,7 +9,7 @@ if (!$result) {
 <html>
 
 <head>
-  <title>Home Page</title>
+  <title>Rooms Page</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -102,56 +84,90 @@ if (!$result) {
             color: #333;
             font-size: 18px;
         }
+        .room {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+.room-image {
+  flex: 1;
+  max-width: 50%;
+  padding: 10px;
+}
+
+.room-image img {
+  width: 100%;
+  height: auto;
+}
+
+.room-details {
+  flex: 2;
+  padding: 10px;
+}
+
+.book-button {
+  padding: 10px 20px;
+  background-color: blue;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+h2 {
+  font-weight: bold;
+}
 
   </style>
 </head>
 
 <body>
-<?php include 'header.php'; ?>
-<?php include 'menubar.php'; ?>
+  <?php include 'header.php'; ?>
+  <?php include 'menubar.php'; ?>
 
   <div id="site_content">
-  <?php include 'sidebar.php'; ?>
-      <div id="content">
-      <table border="1">
-      <h2>Room List</h2>
-      <a href="addroom.php">[Add a Room]</a> | <a href="./maintenance.php">[Return to Maintenance Page]</a>
-    <thead>
-        <tr>
-            <th>Room Name</th>
-            <th>Type</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-           while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['roomname']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['roomtype']) . "</td>";
-            echo "<td>";
-            echo "<a href='viewroom.php?id=" . $row['roomID'] . "'>View</a> | ";
-            echo "<a href='editroom.php?id=" . $row['roomID'] . "'>Edit</a> | ";
-            echo "<a href='deleteroom.php?id=" . $row['roomID'] . "'>Delete</a>| ";
-            echo "</td>";
-            echo "</tr>";
-        }
-        
-        ?>
-    </tbody>
-</table>
+    <?php include 'sidebar.php'; ?>
+    <div id="content">
+      <h2>Our Rooms</h2>
+      <div class="container">
+      <?php
+        // SQL query to select data from database
+        $sql = "SELECT roomID, roomname, roomtype, description, beds FROM room";
+        $result = $conn->query($sql);
 
-<?php
-mysqli_free_result($result);
-mysqli_close($DBC);
-?>
-    
+        if ($result->num_rows > 0) {
+          // Output data for each row
+          while($row = $result->fetch_assoc()) {
+        ?>
+        <!-- Single room -->
+        <div class="room">
+  <div class="room-image">
+    <img src="./images/bed.jpg" alt="Room <?php echo $row['roomID']; ?>">
+  </div>
+  <div class="room-details">
+    <h2><?php echo $row['roomname']; ?></h2>
+    <p>Room Type: <?php echo $row['roomtype']; ?></p>
+    <p>Beds: <?php echo $row['beds']; ?></p>
+    <p>Description: <?php echo $row['description']; ?></p>
+  
+    <a href="booking.php">
+      <div class="book-button">Book</div>
+    </a>
+  </div>
+</div>
+
+        <hr>
+        <?php
+          }
+        } else {
+          echo "No rooms found.";
+        }
+        ?>
+
+
       </div>
     </div>
+  </div>
 
-    <?php include 'footer.php'; ?>
-
+  <?php include 'footer.php'; ?>
 </body>
 </html>
-

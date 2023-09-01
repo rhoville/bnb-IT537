@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $row = $result->fetch_assoc();
       $stored_password = $row['password'];
       $is_hashed = $row['is_hashed'];
-      $isAdmin = $row['isAdmin']; // Assuming you have a column 'isAdmin' in your 'customer' table
+      $isAdmin = $row['isAdmin']; 
 
       $is_verified = false;
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($is_verified) {
           $_SESSION['email'] = $email;
           $_SESSION['firstname'] = $row['firstname'];
-          $_SESSION['isAdmin'] = $isAdmin; // Set the isAdmin flag in session
+          $_SESSION['isAdmin'] = $isAdmin; 
           $_SESSION['customerID'] = $row['customerID'];
 
 
@@ -193,12 +193,14 @@ input[type="text"], input[type="password"] {
     text-decoration: underline;
 }
 .logout-button {
-    background-color: #f44336;
+    background-color: red;
     color: #fff;
     border: none;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
     transition: background-color 0.3s;
 }
 
@@ -235,6 +237,7 @@ input[type="text"], input[type="password"] {
 
             <div class="login-buttons">
                 <button type="submit" class="login-button">Login</button>
+                <button type="submit" class="logout-button">Logout</button>
                 <p>Not yet registered?</p>
                 <a href="signup.php" class="signup-button">Sign up</a>
 

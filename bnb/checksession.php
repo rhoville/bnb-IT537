@@ -4,7 +4,7 @@ session_start();
 
 // Function to check if the user is logged in
 function checkUser() {
-    // Check if the 'user_id' exists in the session
+    // Check if the 'userid' exists in the session
     if (!isset($_SESSION['userID'])) {
         // Redirect to the login page if the user is not logged in
         header("Location: login.php");
